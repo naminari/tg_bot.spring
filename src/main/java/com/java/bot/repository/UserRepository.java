@@ -1,17 +1,14 @@
 package com.java.bot.repository;
 
 import com.java.bot.dto.User;
-import com.java.bot.dto.UserMapper;
 import com.java.bot.exception.DbException;
-import com.java.bot.repository.IUserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Slf4j
 @Repository
@@ -30,7 +27,8 @@ public class UserRepository implements IUserRepository {
     /**
      * Req-args constructor for Spring DI
      */
-    public UserRepository(@Qualifier("bot-db") JdbcTemplate template) {
+    @Autowired
+    public UserRepository(JdbcTemplate template) {
         this.template = template;
     }
 
